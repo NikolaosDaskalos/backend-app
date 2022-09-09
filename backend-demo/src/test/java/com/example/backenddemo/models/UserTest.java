@@ -34,7 +34,21 @@ class UserTest {
         }
 
         @Test
-        @DisplayName("Non empty user successfully")
+        @DisplayName("Non empty user with parameters constructor successfully")
+        void createNonEmptyUserWithParametersConstructor() {
+            user = new User(1l,"John","Smith","johnsmith@gmail.com","1993-02-22");
+            assertAll(
+                    () -> assertEquals(1L, user.getUser_id()),
+                    () -> assertEquals("1993-02-22", user.getDate_of_birth().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))),
+                    () -> assertEquals("johnsmith@gmail.com", user.getEmail()),
+                    () -> assertEquals("John", user.getFirst_name()),
+                    () -> assertEquals("Smith", user.getLast_name())
+            );
+
+        }
+
+        @Test
+        @DisplayName("Non empty user with default constructor successfully")
         void createNonEmptyUser() {
             user.setUser_id(1L);
             user.setDate_of_birth("1993-02-22");
@@ -48,7 +62,6 @@ class UserTest {
                     () -> assertEquals("John", user.getFirst_name()),
                     () -> assertEquals("Smith", user.getLast_name())
             );
-            
         }
     }
 }
