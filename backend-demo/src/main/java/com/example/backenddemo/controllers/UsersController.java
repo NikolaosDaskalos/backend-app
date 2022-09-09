@@ -18,7 +18,6 @@ public class UsersController {
     private UserServiceImpl userService;
 
     public UsersController(UserServiceImpl userService){
-        super();
         this.userService = userService;
     }
 

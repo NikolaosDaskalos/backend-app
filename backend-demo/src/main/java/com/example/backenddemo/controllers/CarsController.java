@@ -14,7 +14,6 @@ public class CarsController {
     private CarService carService;
 
     public CarsController(CarService carService){
-        super();
         this.carService = carService;
     }
 
