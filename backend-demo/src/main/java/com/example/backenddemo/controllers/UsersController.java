@@ -2,14 +2,10 @@ package com.example.backenddemo.controllers;
 
 import com.example.backenddemo.models.User;
 import com.example.backenddemo.servicesImpl.UserServiceImpl;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-
-import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/api/users")

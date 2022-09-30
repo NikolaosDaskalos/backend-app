@@ -6,14 +6,16 @@ import com.example.backenddemo.services.CarService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 
 @Service
 public class CarServiceImpl implements CarService {
+
     private final CarRepository carRepository;
 
-    public CarServiceImpl(CarRepository carService){
-        this.carRepository = carService;
+    public CarServiceImpl(CarRepository carRepository){
+        this.carRepository = carRepository;
     }
 
     @Override
@@ -40,7 +42,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car updateCar(Long id, Car car) {
         Car existingCar = carRepository.getReferenceById(id);
-        BeanUtils.copyProperties(car, existingCar, "car_id");
+        BeanUtils.copyProperties(car, existingCar, "carId");
         return carRepository.saveAndFlush(existingCar);
     }
 }

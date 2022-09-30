@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+@DisplayName("Car class Tests")
 class CarTest {
 
     @Nested
@@ -18,10 +18,10 @@ class CarTest {
 
             Car emptyCar = new Car();
             assertAll(
-                    ()-> assertEquals(null,emptyCar.getCar_id()),
+                    ()-> assertEquals(null,emptyCar.getCarId()),
                     ()-> assertEquals(null,emptyCar.getManufacture()),
                     ()-> assertEquals(null,emptyCar.getModel()),
-                    ()-> assertEquals(null,emptyCar.getModel_year()),
+                    ()-> assertEquals(null,emptyCar.getModelYear()),
                     ()-> assertEquals(null,emptyCar.getColor())
             );
         }
@@ -31,10 +31,10 @@ class CarTest {
         void createNonEmptyCarWithParametersConstructor(){
             Car car = new Car(1L,"Toyota","Corolla", 2019,"Black");
             assertAll(
-                    ()-> assertEquals(1L,car.getCar_id()),
+                    ()-> assertEquals(1L,car.getCarId()),
                     ()-> assertEquals("Toyota",car.getManufacture()),
                     ()-> assertEquals("Corolla",car.getModel()),
-                    ()-> assertEquals(2019,car.getModel_year()),
+                    ()-> assertEquals(2019,car.getModelYear()),
                     ()-> assertEquals("Black",car.getColor())
             );
         }
@@ -43,16 +43,16 @@ class CarTest {
         @DisplayName("non empty car instance with default constructor successfully")
         void createNonEmptyCarWithDefaultConstructor(){
             Car car = new Car();
-            car.setCar_id(2L);
+            car.setCarId(2L);
             car.setManufacture("Peugeot");
             car.setModel("2008");
-            car.setModel_year(2020);
+            car.setModelYear(2020);
             car.setColor("Blue");
             assertAll(
-                    ()-> assertEquals(2L,car.getCar_id()),
+                    ()-> assertEquals(2L,car.getCarId()),
                     ()-> assertEquals("Peugeot",car.getManufacture()),
                     ()-> assertEquals("2008",car.getModel()),
-                    ()-> assertEquals(2020,car.getModel_year()),
+                    ()-> assertEquals(2020,car.getModelYear()),
                     ()-> assertEquals("Blue",car.getColor())
             );
         }

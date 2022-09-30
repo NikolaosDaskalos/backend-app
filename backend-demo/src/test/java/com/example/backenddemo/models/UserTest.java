@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("User class Tests")
 class UserTest {
     private  User user;
 
@@ -25,11 +26,11 @@ class UserTest {
         @DisplayName("empty user successfully")
         void createEmptyUser() {
             assertAll(
-        () -> assertEquals(null, user.getUser_id()),
-                    () -> assertEquals(null, user.getDate_of_birth()),
+        () -> assertEquals(null, user.getUserId()),
+                    () -> assertEquals(null, user.getDateOfBirth()),
                     () -> assertEquals(null, user.getEmail()),
-                    () -> assertEquals(null, user.getFirst_name()),
-                    () -> assertEquals(null, user.getLast_name())
+                    () -> assertEquals(null, user.getFirstName()),
+                    () -> assertEquals(null, user.getLastName())
             );
         }
 
@@ -38,11 +39,11 @@ class UserTest {
         void createNonEmptyUserWithParametersConstructor() {
             user = new User(1l,"John","Smith","johnsmith@gmail.com","1993-02-22");
             assertAll(
-                    () -> assertEquals(1L, user.getUser_id()),
-                    () -> assertEquals("1993-02-22", user.getDate_of_birth().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))),
+                    () -> assertEquals(1L, user.getUserId()),
+                    () -> assertEquals("1993-02-22", user.getDateOfBirth().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))),
                     () -> assertEquals("johnsmith@gmail.com", user.getEmail()),
-                    () -> assertEquals("John", user.getFirst_name()),
-                    () -> assertEquals("Smith", user.getLast_name())
+                    () -> assertEquals("John", user.getFirstName()),
+                    () -> assertEquals("Smith", user.getLastName())
             );
 
         }
@@ -50,17 +51,17 @@ class UserTest {
         @Test
         @DisplayName("Non empty user with default constructor successfully")
         void createNonEmptyUser() {
-            user.setUser_id(1L);
-            user.setDate_of_birth("1993-02-22");
+            user.setUserId(1L);
+            user.setDateOfBirth("1993-02-22");
             user.setEmail("johnsmith@gmail.com");
-            user.setFirst_name("John");
-            user.setLast_name("Smith");
+            user.setFirstName("John");
+            user.setLastName("Smith");
             assertAll(
-                    () -> assertEquals(1L, user.getUser_id()),
-                    () -> assertEquals("1993-02-22", user.getDate_of_birth().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))),
+                    () -> assertEquals(1L, user.getUserId()),
+                    () -> assertEquals("1993-02-22", user.getDateOfBirth().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))),
                     () -> assertEquals("johnsmith@gmail.com", user.getEmail()),
-                    () -> assertEquals("John", user.getFirst_name()),
-                    () -> assertEquals("Smith", user.getLast_name())
+                    () -> assertEquals("John", user.getFirstName()),
+                    () -> assertEquals("Smith", user.getLastName())
             );
         }
     }
