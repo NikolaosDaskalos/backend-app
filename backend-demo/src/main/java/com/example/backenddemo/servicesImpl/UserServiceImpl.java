@@ -5,8 +5,6 @@ import com.example.backenddemo.repositories.UserRepository;
 import com.example.backenddemo.services.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -16,6 +14,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository){
@@ -53,7 +52,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(Long id,User user) {
             User existingUser = userRepository.getReferenceById(id);
-            BeanUtils.copyProperties(user, existingUser, "user_id");
+            BeanUtils.copyProperties(user, existingUser, "userId");
             return userRepository.saveAndFlush(existingUser);
     }
 }

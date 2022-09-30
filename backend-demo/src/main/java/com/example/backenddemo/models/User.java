@@ -10,53 +10,55 @@ import java.time.format.DateTimeFormatter;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     @Id
+    @Column(name= "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long userId;
 
     @Column(unique=true)
     private String email;
-
-    private String first_name;
-    private String last_name;
-    private LocalDate date_of_birth;
+    @Column(name= "first_name")
+    private String firstName;
+    @Column(name= "last_name")
+    private String lastName;
+    @Column(name="date_of_birth")
+    private LocalDate dateOfBirth;
 
     //Default Constructor
     public User(){}
 
-    public User(Long user_id, String first_name, String last_name,
-                String email, String date_of_birth){
-        this.user_id =user_id;
-        this.first_name =first_name;
-        this.last_name = last_name;
+    public User(Long userId, String firstName, String lastName,
+                String email, String dateOfBirth){
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.date_of_birth = LocalDate.parse(date_of_birth,formatter);
+        this.dateOfBirth = LocalDate.parse(dateOfBirth,formatter);
     }
-
 
     //region Getters & Setters
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -67,13 +69,13 @@ public class User {
         this.email = email;
     }
 
-    public LocalDate getDate_of_birth() {
-        return date_of_birth;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDate_of_birth(String date_of_birth) {
+    public void setDateOfBirth(String dateOfBirth) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.date_of_birth = LocalDate.parse(date_of_birth,formatter);
+        this.dateOfBirth = LocalDate.parse(dateOfBirth,formatter);
     }
     //endregion
 }
