@@ -4,10 +4,13 @@ import com.example.backenddemo.models.User;
 import com.example.backenddemo.servicesImpl.UserServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -17,22 +20,24 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-@WebMvcTest(UsersController.class)
-@DisplayName("Users Controller Tests")
-public class UsersControllerShould {
-
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@DisplayName("Users Controller Integration Tests")
+public class UsersControllerIntegrationTest {
     @MockBean
-    private UserServiceImpl userServiceImpl;
+    private UserServiceImpl userService;
+
     @Autowired
     private MockMvc mockMvc;
-    private User user = new User(1l,"John","Smith","johnsmith@gmail.com","1993-02-22");
+
+    private User user = new User(1L,"John","Smith","johnsmith@gmail.com","1993-02-22");
 
 
     @Test
     @DisplayName("Get all users successfully")
     void getAllUsersTest() throws Exception {
-        when(userServiceImpl.getAllUsers()).thenReturn(new ArrayList<User>());
+        when(userService.getAllUsers()).thenReturn(new ArrayList<User>());
         mockMvc.perform(get("/api/users/")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -41,8 +46,8 @@ public class UsersControllerShould {
     @Test
     @DisplayName("Get a user by id successfully")
     void getUserByIdTest() throws Exception {
-        when(userServiceImpl.getUserById(user.getUserId())).thenReturn(user);
-        mockMvc.perform(get("/api/users/{id}",user.getUserId())
+        when(userService.getUserById(1l)).thenReturn(user);
+        mockMvc.perform(get("/api/users/{id}",1L)
                         .contentType(MediaType.APPLICATION_JSON))
                         .andExpect(status().isOk())
                         .andExpect(jsonPath("$.userId").value(1L))
@@ -55,7 +60,7 @@ public class UsersControllerShould {
     @Test
     @DisplayName("Post new user successfully")
     void postNewUserTest() throws Exception {
-        when((userServiceImpl.saveUser(user))).thenReturn(user);
+        when((userService.saveUser(user))).thenReturn(user);
 
         mockMvc.perform(post("/api/users/")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -69,8 +74,7 @@ public class UsersControllerShould {
     @Test
     @DisplayName("Delete user successfully")
     void deleteUserTest() throws Exception {
-        userServiceImpl.saveUser(user);
-        mockMvc.perform(delete("/api/users/{id}",user.getUserId())
+        mockMvc.perform(delete("/api/users/{id}",1L)
                         .contentType(MediaType.APPLICATION_JSON))
                         .andExpect(status().isOk());
     }
@@ -78,8 +82,8 @@ public class UsersControllerShould {
     @Test
     @DisplayName("Put request update user successfully")
     void putRequestUpdateUserTest() throws Exception {
-        User update = new User(3l,"George","Brown","gbrowm@hotmail.com","1984-09-12");
-        when(userServiceImpl.updateUser(user.getUserId(),update)).thenReturn(update);
+        User update = new User(3L,"George","Brown","gbrowm@hotmail.com","1984-09-12");
+        when(userService.updateUser(1L,update)).thenReturn(update);
 
         mockMvc.perform(put("/api/users/{id}",user.getUserId())
                         .contentType(MediaType.APPLICATION_JSON)

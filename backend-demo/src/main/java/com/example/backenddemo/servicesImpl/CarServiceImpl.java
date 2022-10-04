@@ -6,7 +6,6 @@ import com.example.backenddemo.services.CarService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 
 @Service
@@ -42,7 +41,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car updateCar(Long id, Car car) {
         Car existingCar = carRepository.getReferenceById(id);
-        BeanUtils.copyProperties(car, existingCar, "carId");
+            BeanUtils.copyProperties(car, existingCar, "carId");
         return carRepository.saveAndFlush(existingCar);
     }
 }
