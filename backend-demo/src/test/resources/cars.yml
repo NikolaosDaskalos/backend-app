@@ -1,0 +1,13 @@
+cars:
+  - car_id: 1
+    manufacture: "Toyota"
+    model: "Prius"
+    model_year: 2019
+    color: "Black"
+  - car_id: 2
+    manufacture: "Peugeot"
+    model: "3008"
+    model_year: 2021
+    color: "Silver"
+
+

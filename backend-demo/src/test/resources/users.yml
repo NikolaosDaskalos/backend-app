@@ -1,0 +1,13 @@
+users:
+  - user_id: 1
+    email: "johnsmmith@gmail.com"
+    first_name: "John"
+    last_name: "Smith"
+    date_of_birth: "09-10-1990"
+  - userId: 2
+    email: "paulb@yahoo.com"
+    first_name: "Paul"
+    last_name: "Brown"
+    date_of_birth: "13-03-1883"
+
+

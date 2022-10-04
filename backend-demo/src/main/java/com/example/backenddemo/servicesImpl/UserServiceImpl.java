@@ -2,7 +2,6 @@ package com.example.backenddemo.servicesImpl;
 
 import com.example.backenddemo.models.User;
 import com.example.backenddemo.repositories.UserRepository;
-import com.example.backenddemo.services.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,7 +12,7 @@ import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements com.example.backenddemo.services.UserService {
 
     private final UserRepository userRepository;
 
